@@ -1,0 +1,31 @@
+@import '../../../style/shared.scss';
+
+
+
+
+.TodoEditor{
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    border: 1px solid black;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.TodoEditor__textArea{
+    line-height: 16px;
+    padding: 12px 16px;
+    border: 1px solid black;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    resize: none;
+}
+
+.TodoEditor__btn{
+    @extend %button;
+    padding: 10px;
+    border-radius: 4px;
+    color: $white;
+    background-color: rgb(67, 31, 134);
+}

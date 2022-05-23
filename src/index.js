@@ -11,3 +11,11 @@ root.render(
   </React.StrictMode>
 );
 
+
+// $ npm install modern-normalize
+// $ npm i prop-types
+// $ npm install classnames
+// $ npm install sass
+// $ npm i shortid
+
+// $ npm install prop-types modern-normalize classnames sass shortid

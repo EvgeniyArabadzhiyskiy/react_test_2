@@ -1,0 +1,10 @@
+.section__title {
+  font-size: 25px;
+  color: rgb(35, 13, 236);
+  text-align: center;
+}
+
+:global(.section) {
+  background-color: rgb(238, 215, 235);
+  padding: 100px;
+}

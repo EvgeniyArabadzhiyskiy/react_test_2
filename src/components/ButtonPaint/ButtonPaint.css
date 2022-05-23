@@ -1,0 +1,38 @@
+.ButtonPaint {
+  display: inline-flex;
+  margin: 0 4px;
+  padding: 8px 24px;
+  border: 0;
+  border-radius: 2px;
+  color: #ffffff;
+  font-size: 14px;
+  font-family: inherit;
+  background-color: #2196f3;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.ButtonPaint:hover,
+.ButtonPaint:focus {
+  background-color: #1976d2;
+}
+
+.ButtonPaint:disabled:hover {
+  background-color: #e2e7ec;
+}
+
+.Button-disabled {
+  background-color: #0000001f;
+  color: #00000042;
+}
+
+.color {
+  width: 40px;
+  height: 40px;
+  background-color: rgb(243, 31, 31);
+}
+
+.color-blue {
+  width: 40px;
+  height: 40px;
+  /* background-color: rgb(11, 15, 228); */
+}

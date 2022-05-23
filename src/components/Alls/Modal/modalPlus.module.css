@@ -1,0 +1,35 @@
+.backdrop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50vw;
+  height: 80vh;
+  background-color: rgba(44, 39, 39, 0.459);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1000ms linear;
+}
+
+.modal__window {
+  width: 70%;
+  height: 50%;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  transform: scale(0.6);
+  transition: transform 1300ms linear;
+}
+
+.backdrop.no__hidden {
+  opacity: 1;
+  pointer-events: initial;
+}
+
+.backdrop.no__hidden .modal__window {
+  transform: scale(1.1);
+}

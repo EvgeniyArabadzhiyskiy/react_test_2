@@ -1,0 +1,20 @@
+.alert {
+  font-size: 25px;
+  background-color: grey;
+  height: 50px;
+}
+
+.error {
+  composes: alert;
+  background-color: red;
+}
+
+.warning {
+  composes: alert;
+  background-color: yellow;
+}
+
+.success {
+  composes: alert;
+  background-color: green;
+}

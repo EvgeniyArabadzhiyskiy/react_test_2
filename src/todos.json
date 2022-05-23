@@ -1,0 +1,6 @@
+[
+  { "id": "1", "task": "Выучить HTML", "complited": true },
+  { "id": "2", "task": "Выучить CSS", "complited": false },
+  { "id": "3", "task": "Выучить Java Script", "complited": false },
+  { "id": "4", "task": "Выучить React", "complited": false }
+]
