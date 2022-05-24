@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import Section from "./components/Section/Section";
-// import Container from "./components/Container/Container";
+import Container from "./components/Container/Container";
 // import PaintingList from "./components/PaintingList/PaintingList";
 // import paintings from "./components/paintings.json";
 // import ButtonPaint from "./components/ButtonPaint";
@@ -9,7 +9,7 @@ import React, { Component } from "react";
 // import Profile from "components/Profile/Profile";
 // import user from "components/Profile/user.json";
 // import Counter from "./components/Counter/Counter";
-// import Modal from "./components/Alls/Modal/Modal";
+import Modal from "./components/Alls/Modal/Modal";
 // import Dropdown from "./components/Dropdown/Dropdown"
 import initialTodos from "./todos.json";
 import TodoList from "./components/TodoList/TodoList/TodoList";
@@ -26,12 +26,11 @@ import shortid from "shortid";
 //   { label: "indigo", color: "#3F51B5" },
 // ];
 
-
-
 class App extends Component {
   state = {
     todos: initialTodos, // Массив из .Json [{ id: "1", task: "Выучить HTML", complited: true}]
     filter: "",
+    isOpen: false,
   };
 
   handleSubmit = (text) => {
@@ -85,9 +84,31 @@ class App extends Component {
     });
   };
 
+  // componentDidMount() {
+  //   const localTodos = localStorage.getItem("todos");
+  //   const parsed = JSON.parse(localTodos);
+
+  //   if (parsed) {
+  //     this.setState({ todos: parsed });
+  //   }
+  // }
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (this.state.todos !== prevState.todos) {
+  //     localStorage.setItem("todos", JSON.stringify(this.state.todos));
+  //   }
+  // }
+
+  toggle = () => {
+    this.setState((prevState) => {
+      return {
+        isOpen: !prevState.isOpen,
+      };
+    });
+  };
+
   render() {
     const { todos } = this.state;
-
     const allTodos = todos.length;
     const ComplitedTodo = todos.reduce((acc, todo) => {
       return todo.complited ? acc + 1 : acc;
@@ -96,81 +117,68 @@ class App extends Component {
     const visibleTodos = this.getVisibleTodos();
 
     return (
-      <div>
+      <>
+        {" "}
         <div>
-          <p>Общее количество: {allTodos}</p>
-          <p>Количество выполненных: {ComplitedTodo}</p>
+          <button type="button" className="btn-modal" onClick={this.toggle}>
+            Open
+          </button>
+
+          {this.state.isOpen && (
+            <Modal onToggle={this.toggle}>
+              Веб-приложения В современной веб-разработке изменились не только
+              техники позволяющие веб-сайтам выглядеть лучше, загружаться
+              быстрее и быть приятнее в использовании. В первую очередь
+              изменились фундаментальные вещи - то, как мы проектируем и создаем
+              веб-приложения.
+              <button type="button" className="btn" onClick={this.toggle}>
+                Close
+              </button>
+            </Modal>
+          )}
         </div>
+        <div>
+          <div>
+            <p>Общее количество: {allTodos}</p>
+            <p>Количество выполненных: {ComplitedTodo}</p>
+          </div>
 
-        <Filter
-          filterValue={this.state.filter}
-          onFilterHandler={this.changeFilter}
-        />
+          <Filter
+            filterValue={this.state.filter}
+            onFilterHandler={this.changeFilter}
+          />
 
-        <Form dataTodo={this.state.todos} onHandleSubmit={this.handleSubmit} />
-        <TodoList
-          todos={visibleTodos}
-          onBtnClick={this.deleteTask}
-          onToggleComplited={this.toggleComplitd}
-        />
-      </div>
+          <Form
+            dataTodo={this.state.todos}
+            onHandleSubmit={this.handleSubmit}
+          />
+          <TodoList
+            todos={visibleTodos}
+            onBtnClick={this.deleteTask}
+            onToggleComplited={this.toggleComplitd}
+          ></TodoList>
+        </div>
+      </>
     );
   }
 }
 
 export default App;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // export default function App(props) {
 //   return (
 //     <div>
 //       <Container>
-//         <Section title="Топ недели">
+//         {/* <Section title="Топ недели"> */}
 
-//           <Modal />
+//           {/* <Modal />  */}
 //           {/* <Dropdown /> */}
 //           {/* <Counter initialValue={10} /> */}
 //           {/* <ColorPicker options={colorPickerOptions} /> */}
 //           {/* <Alert text="Шеф всё пропало!" type="error" /> */}
 //           {/* <Alert text="Шеф всё пропало!" type="warning" /> */}
 //           {/* <Alert text="Шеф всё пропало!" type="success" /> */}
-//         </Section>
+//         {/* </Section> */}
 
 //         {/* <PaintingList items={paintings} /> */}
 //         {/* <ButtonPaint type="button" disabled={false} label="Click Me" /> */}

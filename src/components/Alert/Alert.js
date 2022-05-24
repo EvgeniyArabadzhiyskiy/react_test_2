@@ -15,23 +15,3 @@ Alert.propTypes = {
 
 export default Alert;
 
-// { alertClass.join(' ')}
-
-// let array = []
-
-// let x = 10
-// x = true ? x + 10 : 5
-// console.log("x:", x);
-
-// let array = x > 5 ? [x] : [`${x * 2}`]
-
-// if (false) {
-//     array.push('sss')
-// }
-// else{
-//     array.push('ddd')
-// }
-
-// array.push('sss')
-
-// console.log("array", array);

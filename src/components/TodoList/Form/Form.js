@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import "./Form.scss";
+import Modal from "../../Alls/Modal/Modal";
 
 class Form extends Component {
   state = {
     updateTodo: this.props.dataTodo,
     inputValue: "",
+    isOpen: false,
   };
 
   formSubmit = (evt) => {
@@ -31,9 +33,34 @@ class Form extends Component {
     });
   };
 
+  toggle = () => {
+    this.setState((prevState) => {
+      return {
+        isOpen: !prevState.isOpen,
+      };
+    });
+  };
+
   render() {
     return (
       <div>
+        <div>
+          <button type="button" className="btn-modal" onClick={this.toggle}>
+            Open
+          </button>
+          {this.state.isOpen && (
+            <Modal onToggle={this.toggle}>
+              При создании приложения с использованием React, разработчик не
+              взаимодействует с DOM-деревом напрямую. Его задача описать
+              интерфейс с помощью компонентов (шаблон) и управлять изменением
+              данных (модель). React, при изменении данных модели, сам обновит
+              интерфейс по шаблону.
+              <button type="button" className="btn" onClick={this.toggle}>
+                Close
+              </button>
+            </Modal>
+          )}
+        </div>
         <form className="TodoEditor" onSubmit={this.formSubmit}>
           <textarea
             type="text"

@@ -1,47 +1,75 @@
 import "./Modal.css";
+import { createPortal } from "react-dom";
 import React, { Component } from "react";
 
+const modalRoot = document.querySelector("#modal-root");
+
 class Modal extends Component {
-  state = {
-    isHidden: "",
+  backDropClose = (evt) => {
+    if (evt.currentTarget === evt.target) {
+      this.props.onToggle();
+    }
   };
 
-  toggle = () => {
-    this.setState((prevState) => {
-      return {
-        isHidden: prevState.isHidden === "" ? "no__hidden" : "",
-      };
-    });
+  componentDidMount() {
+    console.log("hello");
+    window.addEventListener("keydown", this.onESC);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("keydown", this.onESC);
+  }
+
+  onESC = (evt) => {
+    console.log(evt.code);
+    if (evt.code === "Escape") {
+      this.props.onToggle();
+    }
   };
 
   render() {
-    return (
+    return createPortal(
       <div>
-        <button className="btn-modal" onClick={this.toggle}>
+        {/* <button type="button" className="btn-modal" onClick={this.props.onToggle}>
           Open
-        </button>
+        </button> */}
 
         <div
-          className={`${"backdrop"} ${this.state.isHidden}`.trim()}
-          onClick={this.toggle}
+          className="backdrop"
+          // className={`${"backdrop"} ${this.state.isHidden}`.trim()}
+          // onClick={this.props.onToggle}
+          onClick={this.backDropClose}
         >
-          <div className="modal__window"></div>
+          <div className="modal__window">{this.props.children}</div>
         </div>
-      </div>
+      </div>,
+      document.querySelector("#modal-root")
     );
   }
 }
 
-// import stl from './modalPlus.module.css'
-// const Modal = () => {
+// const Modal = ({onToggle, onClose}) => {
+
 //   return (
 //     <div>
-//       <button className="btn-modal">Open</button>
-//       <div className={`${stl.backdrop} ${stl.no__hidden}`}>
-//         <div className={stl.modal__window}></div>
+//       {/* <button type="button" className="btn-modal" onClick={this.props.onToggle}>
+//         Open
+//       </button> */}
+
+//        <div
+//        className="backdrop"
+//         // className={`${"backdrop"} ${this.state.isHidden}`.trim()}
+//         // onClick={this.props.onToggle}
+//         data-modal="modal"
+//         onClick={onClose}
+//       >
+//         <div className="modal__window"></div>
+//         <button type="button"  onClick={onToggle}>
+//         Close
+//       </button>
 //       </div>
-//     </div>
-//   );
-// };
+//     </div>)
+
+// }
 
 export default Modal;
