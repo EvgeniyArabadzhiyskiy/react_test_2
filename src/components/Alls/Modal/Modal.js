@@ -30,11 +30,10 @@ class Modal extends Component {
   render() {
     return createPortal(
       <div>
-       
         <div
           className="backdrop"
           // className={`${"backdrop"} ${this.state.isHidden}`.trim()}
-          
+
           onClick={this.backDropClose}
         >
           <div className="modal__window">{this.props.children}</div>
@@ -44,7 +43,5 @@ class Modal extends Component {
     );
   }
 }
-
-
 
 export default Modal;
