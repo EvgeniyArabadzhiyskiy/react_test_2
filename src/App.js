@@ -124,6 +124,7 @@ class App extends Component {
             Open
           </button>
 
+
           {this.state.isOpen && (
             <Modal onToggle={this.toggle}>
               Веб-приложения В современной веб-разработке изменились не только
