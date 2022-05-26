@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import Section from "./components/Section/Section";
-import Container from "./components/Container/Container";
+// import Container from "./components/Container/Container";
 // import PaintingList from "./components/PaintingList/PaintingList";
 // import paintings from "./components/paintings.json";
 // import ButtonPaint from "./components/ButtonPaint";
@@ -9,13 +9,20 @@ import Container from "./components/Container/Container";
 // import Profile from "components/Profile/Profile";
 // import user from "components/Profile/user.json";
 // import Counter from "./components/Counter/Counter";
-import Modal from "./components/Alls/Modal/Modal";
 // import Dropdown from "./components/Dropdown/Dropdown"
-import initialTodos from "./todos.json";
+
+import Modal from "./components/Alls/Modal/Modal";
+// import Tabs from "./components/Alls/Tabs/Tabs";
+// import tabs from './tabs.json'
+import { ReactComponent as AddIcon } from "./icons svg/add.svg";
+
+
+// import initialTodos from "./todos.json";
 import TodoList from "./components/TodoList/TodoList/TodoList";
 import Form from "./components/TodoList/Form/Form";
 import Filter from "./components/TodoList/Filter/Filter";
 import shortid from "shortid";
+import IconButton from "./components/IconButton/IconButton";
 
 // const colorPickerOptions = [
 //   { label: "red", color: "#F44336" },
@@ -28,7 +35,7 @@ import shortid from "shortid";
 
 class App extends Component {
   state = {
-    todos: initialTodos, // Массив из .Json [{ id: "1", task: "Выучить HTML", complited: true}]
+    todos: [], // Массив из .Json [{ id: "1", task: "Выучить HTML", complited: true}]
     filter: "",
     isOpen: false,
   };
@@ -62,11 +69,6 @@ class App extends Component {
             : todo;
         }),
       };
-
-      // if (todo.id === data) {
-      //   return {...todo,complited: !todo.complited}
-      // }
-      // return todo
     });
   };
 
@@ -84,20 +86,26 @@ class App extends Component {
     });
   };
 
-  // componentDidMount() {
-  //   const localTodos = localStorage.getItem("todos");
-  //   const parsed = JSON.parse(localTodos);
+  componentDidMount() {
+    const localTodos = localStorage.getItem("todos");
+    const parsed = JSON.parse(localTodos);
 
-  //   if (parsed) {
-  //     this.setState({ todos: parsed });
-  //   }
-  // }
+    if (parsed) {
+      this.setState({ todos: parsed });
+    }
+  }
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (this.state.todos !== prevState.todos) {
-  //     localStorage.setItem("todos", JSON.stringify(this.state.todos));
-  //   }
-  // }
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.todos !== prevState.todos) {
+      localStorage.setItem("todos", JSON.stringify(this.state.todos));
+    }
+
+    const currentTodo = this.state.todos;
+    const prevTodo = prevState.todos;
+    if (currentTodo.length > prevTodo.length && prevTodo.length !== 0) {
+      this.toggle();
+    }
+  }
 
   toggle = () => {
     this.setState((prevState) => {
@@ -118,25 +126,26 @@ class App extends Component {
 
     return (
       <>
-        {" "}
         <div>
-          <button type="button" className="btn-modal" onClick={this.toggle}>
+          {/* <button type="button" className="btn-modal" onClick={this.toggle}>
             Open
-          </button>
+          </button> */}
+
+          <IconButton onClick={this.toggle} aria-label="Добавить заметку">
+            {<AddIcon width="40" height="40"  />}
+          </IconButton>
 
           {this.state.isOpen && (
             <Modal onToggle={this.toggle}>
-              Веб-приложения В современной веб-разработке изменились не только
-              техники позволяющие веб-сайтам выглядеть лучше, загружаться
-              быстрее и быть приятнее в использовании. В первую очередь
-              изменились фундаментальные вещи - то, как мы проектируем и создаем
-              веб-приложения.
-              <button type="button" className="btn" onClick={this.toggle}>
-                Close
-              </button>
+              <Form
+                dataTodo={this.state.todos}
+                onHandleSubmit={this.handleSubmit}
+                onCloseForm={this.toggle}
+              />
             </Modal>
           )}
         </div>
+
         <div>
           <div>
             <p>Общее количество: {allTodos}</p>
@@ -148,10 +157,6 @@ class App extends Component {
             onFilterHandler={this.changeFilter}
           />
 
-          <Form
-            dataTodo={this.state.todos}
-            onHandleSubmit={this.handleSubmit}
-          />
           <TodoList
             todos={visibleTodos}
             onBtnClick={this.deleteTask}

@@ -13,7 +13,7 @@ code {
 }
 
 .btn{
-  display: block;
+  display:inline-block;
   border: none;
   outline: none;
   padding: 10px 16px;

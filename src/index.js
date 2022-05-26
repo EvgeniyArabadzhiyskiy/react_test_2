@@ -5,12 +5,22 @@ import './index.css';
 import App from './App';
 
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+// const root = ReactDOM.createRoot(document.querySelector("#root"));
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );
+
+const root = ReactDOM.createRoot(document.querySelector("#root"));
 root.render(
-  <React.StrictMode>
+  
     <App />
-  </React.StrictMode>
+  
 );
+
+
+
 
 
 // $ npm install modern-normalize
@@ -18,5 +28,8 @@ root.render(
 // $ npm install classnames
 // $ npm install sass
 // $ npm i shortid
+// $ npm i axios
 
-// $ npm install prop-types modern-normalize classnames sass shortid
+
+
+// $ npm install prop-types modern-normalize classnames sass shortid axios

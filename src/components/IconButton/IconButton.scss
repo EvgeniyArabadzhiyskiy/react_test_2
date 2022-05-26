@@ -1,0 +1,16 @@
+@import '../../style/shared.scss';
+
+.IconButton{
+    margin: 0;
+    padding: 10px;
+    border: none;
+    border-radius: 50%;
+    color:rgb(230, 228, 238);
+    font:inherit;
+    background-color: rgb(7, 110, 207);
+    cursor: pointer;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}

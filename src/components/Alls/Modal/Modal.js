@@ -12,16 +12,17 @@ class Modal extends Component {
   };
 
   componentDidMount() {
-    console.log("hello");
+    // console.log("hello");
     window.addEventListener("keydown", this.onESC);
   }
 
   componentWillUnmount() {
+    // console.log("componentWillUnmount");
     window.removeEventListener("keydown", this.onESC);
   }
 
   onESC = (evt) => {
-    console.log(evt.code);
+    
     if (evt.code === "Escape") {
       this.props.onToggle();
     }

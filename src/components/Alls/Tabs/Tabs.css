@@ -1,0 +1,8 @@
+.Tabs{
+    background-color: rgb(12, 168, 168);
+    margin-left: 20px;
+}
+
+.Tabs__activ{
+    background-color: rgb(223, 101, 20);
+}

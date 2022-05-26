@@ -1,5 +1,6 @@
 import "./TodoList.scss";
 import classNames from "classnames";
+import Todo from "../Todo";
 
 const ToduList = ({ todos, onBtnClick, onToggleComplited }) => {
   return (
@@ -12,21 +13,12 @@ const ToduList = ({ todos, onBtnClick, onToggleComplited }) => {
               TodoList__item__completed: complited,
             })}
           >
-            <input
-              type="checkbox"
-              className="TodoList__checkbox"
-              checked={complited}
-              onChange={(evt) => onToggleComplited(id)}
+            <Todo
+              complited={complited}
+              task={task}
+              onTodoClick={() => onBtnClick(id)}
+              onToggle={() => onToggleComplited(id)}
             />
-            <p className="TodoList__text">{task}</p>
-
-            <button
-              className="TodoList__btn"
-              type="button"
-              onClick={() => onBtnClick(id)}
-            >
-              Удалить
-            </button>
           </li>
         );
       })}
