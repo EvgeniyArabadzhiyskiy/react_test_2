@@ -26,18 +26,9 @@ class Form extends Component {
     });
   };
 
-  handleLicense = (evt) => {
-    console.log(evt.target.checked);
-    this.setState({
-      license: evt.target.checked,
-    });
-  };
-
   render() {
     return (
       <div>
-        
-        
         <form className="TodoEditor" onSubmit={this.formSubmit}>
           <textarea
             type="text"
