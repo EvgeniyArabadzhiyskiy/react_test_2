@@ -22,7 +22,6 @@ class Modal extends Component {
   }
 
   onESC = (evt) => {
-    
     if (evt.code === "Escape") {
       this.props.onToggle();
     }
@@ -31,12 +30,7 @@ class Modal extends Component {
   render() {
     return createPortal(
       <div>
-        <div
-          className="backdrop"
-          // className={`${"backdrop"} ${this.state.isHidden}`.trim()}
-
-          onClick={this.backDropClose}
-        >
+        <div className="backdrop" onClick={this.backDropClose}>
           <div className="modal__window">{this.props.children}</div>
         </div>
       </div>,
