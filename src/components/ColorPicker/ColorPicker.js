@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,  } from "react";
 // import React, { Component } from "react";
 import stl from "./ColorPicker.module.css";
 // import PropTypes from "prop-types";
@@ -15,24 +15,26 @@ const ColorPicker = ({ options }) => {
   const { label, color, image } = options[activIndex];
   
 
-  const onPlus = (e) => {
-    setactiv((prevState) => {
-      return prevState + 1;
-    });
-  };
+  // const onPlus = useRef(() => {}) 
 
   useEffect(() => {
+
+    // onPlus.current = () => {
+    //   setactiv(prevState =>  prevState + 1);
+    // };
+
+
     
-    // console.log("ColorPicker ~ activ", activ);
     const documentTitleClicks = activ + activIndex
     document.title = `Click ${documentTitleClicks}`
-    // console.log("hello");
-    // setActivIndex(55)
-    // setactiv(100)
-  },[activIndex,activ ]);
+    
+  },[activ, activIndex]);
 
-  // console.log("ColorPicker ~ activIndex", activIndex);
-  // console.log("ColorPicker ~ activ", activ);
+  
+
+  const  onPlus = () => {
+    setactiv(prevState =>  prevState + 1);
+  };
 
   const makeOptionClassesName = (index) => {
     return classNames(stl.opti, {

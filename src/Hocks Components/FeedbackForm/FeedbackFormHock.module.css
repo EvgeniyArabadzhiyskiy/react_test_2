@@ -1,0 +1,44 @@
+
+
+.Feedback__form{
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    border: 1px solid black;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.Feedback__input{
+    margin-right: 20px;
+    outline-color: rgb(8, 68, 233);
+    border: 1px solid black;
+    border-radius: 4px;
+}
+
+
+
+.Feedback__label{
+    font-weight: 700;
+}
+
+.Feedback__area{
+    padding: 16px;
+    border: 1px solid black;
+    outline-color: rgb(8, 68, 233);
+    border-radius: 4px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    resize: none;
+}
+
+.Feedback__btn{
+    display: inline-block;
+    width: 150px;
+    margin: 0 auto;
+    padding: 5px 10px;
+    background-color: rgb(9, 130, 243);
+    border: 1px solid blue;
+    border-radius: 4px;
+}

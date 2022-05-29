@@ -1,21 +1,23 @@
 // import React, { Component } from "react";
 // import Section from "./components/Section/Section";
 import Container from "./components/Container/Container";
+// import Clock from "./Hocks Components/Clock/Clock";
 // import PaintingList from "./components/PaintingList/PaintingList";
 // import paintings from "./components/paintings.json";
 // import ButtonPaint from "./components/ButtonPaint";
-import ColorPicker from "./components/ColorPicker/ColorPicker";
+// import ColorPicker from "./components/ColorPicker/ColorPicker";
+import { useState } from "react";
+// import FeedbackFormHock from "./Hocks Components/FeedbackForm/FeedbackFormHock";
 // import Alert from "./components/Alert/Alert";
 // import Profile from "components/Profile/Profile";
 // import user from "components/Profile/user.json";
 // import Counter from "./components/Counter/Counter";
 // import Dropdown from "./components/Dropdown/Dropdown"
 
-// import Modal from "./components/Alls/Modal/Modal";
+import Modal from "./components/Alls/Modal/Modal";
 // import Tabs from "./components/Alls/Tabs/Tabs";
 // import tabs from './tabs.json'
 // import { ReactComponent as AddIcon } from "./icons svg/add.svg";
-
 
 // import initialTodos from "./todos.json";
 // import TodoList from "./components/TodoList/TodoList/TodoList";
@@ -24,34 +26,58 @@ import ColorPicker from "./components/ColorPicker/ColorPicker";
 // import shortid from "shortid";
 // import IconButton from "./components/IconButton/IconButton";
 
+// const colorPickerOptions = [
+//   { label: "red", color: "#F44336", },
+//   { label: "green", color: "#4CAF50", },
+//   { label: "blue", color: "#2196F3", },
+//   { label: "grey", color: "#607D8B", },
+//   { label: "pink", color: "#E91E63", },
+//   { label: "indigo", color: "#3F51B5", },
+// ];
 
-import returnIcon from './icons svg/return.png'
-import settingsIcon from './icons svg/settings.png'
-import trashIcon from './icons svg/trash.png'
-const colorPickerOptions = [
-  { label: "red", color: "#F44336", image: returnIcon},
-  { label: "green", color: "#4CAF50", image: settingsIcon},
-  { label: "blue", color: "#2196F3", image: trashIcon},
-  { label: "grey", color: "#607D8B", image: returnIcon},
-  { label: "pink", color: "#E91E63", image: settingsIcon},
-  { label: "indigo", color: "#3F51B5", image: trashIcon},
-];
+const App = () => {
+  const [delClock, setDelClock] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
+  const stop = (e) => {
+    setDelClock((prev) => !prev);
+  };
 
+  const toggle = () => {
+    setShowModal((prev) => !prev);
+  };
 
-export default function App(props) {
   return (
     <div>
       <Container>
         {/* <Section title="Топ недели"> */}
 
-          {/* <Modal />  */}
-          {/* <Dropdown /> */}
-          {/* <Counter initialValue={10} /> */}
-          <ColorPicker options={colorPickerOptions} />
-          {/* <Alert text="Шеф всё пропало!" type="error" /> */}
-          {/* <Alert text="Шеф всё пропало!" type="warning" /> */}
-          {/* <Alert text="Шеф всё пропало!" type="success" /> */}
+        <button type="button" onClick={stop}>
+          Delete
+        </button>
+
+        <button type="button" className="btn-modal" onClick={toggle}>
+          Open
+        </button>
+
+        {showModal && (
+          <Modal onToggle={toggle}>
+            При разработке программ данные приходят, как правило, в виде
+            массивов и объектов, значения которых необходимо записать в
+            локальные переменные. Для того, чтобы делать это максимально просто,
+            в современном стандарте есть синтаксис деструктуризирующего
+            присваивания.{" "}
+          </Modal>
+        )}
+        {/* <Clock /> */}
+        {/* {delClock && <Clock />} */}
+        {/* <FeedbackFormHock /> */}
+        {/* <Dropdown /> */}
+        {/* <Counter initialValue={10} /> */}
+        {/* <ColorPicker options={colorPickerOptions} /> */}
+        {/* <Alert text="Шеф всё пропало!" type="error" /> */}
+        {/* <Alert text="Шеф всё пропало!" type="warning" /> */}
+        {/* <Alert text="Шеф всё пропало!" type="success" /> */}
         {/* </Section> */}
 
         {/* <PaintingList items={paintings} /> */}
@@ -62,8 +88,8 @@ export default function App(props) {
       </Container>
     </div>
   );
-}
-
+};
+export default App;
 
 // class App extends Component {
 //   state = {
