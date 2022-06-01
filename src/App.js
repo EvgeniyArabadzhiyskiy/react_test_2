@@ -1,7 +1,7 @@
 // import React, { Component } from "react";
 // import Section from "./components/Section/Section";
 import Container from "./components/Container/Container";
-// import Clock from "./Hocks Components/Clock/Clock";
+import Clock from "./Hocks Components/Clock/Clock";
 // import PaintingList from "./components/PaintingList/PaintingList";
 // import paintings from "./components/paintings.json";
 // import ButtonPaint from "./components/ButtonPaint";
