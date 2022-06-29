@@ -1,12 +1,14 @@
-// import React, { Component } from "react";
+import React, { Component } from "react";
 // import Section from "./components/Section/Section";
 import Container from "./components/Container/Container";
-import Clock from "./Hocks Components/Clock/Clock";
+import Player from "./components/Player/Player";
+import VideoList from "./components/Player/VideoList/VideoList";
+// import Clock from "./Hocks Components/Clock/Clock";
 // import PaintingList from "./components/PaintingList/PaintingList";
 // import paintings from "./components/paintings.json";
 // import ButtonPaint from "./components/ButtonPaint";
 // import ColorPicker from "./components/ColorPicker/ColorPicker";
-import { useState } from "react";
+// import { useState } from "react";
 // import FeedbackFormHock from "./Hocks Components/FeedbackForm/FeedbackFormHock";
 // import Alert from "./components/Alert/Alert";
 // import Profile from "components/Profile/Profile";
@@ -14,7 +16,7 @@ import { useState } from "react";
 // import Counter from "./components/Counter/Counter";
 // import Dropdown from "./components/Dropdown/Dropdown"
 
-import Modal from "./components/Alls/Modal/Modal";
+// import Modal from "./components/Alls/Modal/Modal";
 // import Tabs from "./components/Alls/Tabs/Tabs";
 // import tabs from './tabs.json'
 // import { ReactComponent as AddIcon } from "./icons svg/add.svg";
@@ -35,61 +37,61 @@ import Modal from "./components/Alls/Modal/Modal";
 //   { label: "indigo", color: "#3F51B5", },
 // ];
 
-const App = () => {
-  const [delClock, setDelClock] = useState(true);
-  const [showModal, setShowModal] = useState(false);
+// const App = () => {
+//   // const [delClock, setDelClock] = useState(true);
+//   // const [showModal, setShowModal] = useState(false);
 
-  const stop = (e) => {
-    setDelClock((prev) => !prev);
-  };
+//   // const stop = (e) => {
+//   //   setDelClock((prev) => !prev);
+//   // };
 
-  const toggle = () => {
-    setShowModal((prev) => !prev);
-  };
+//   // const toggle = () => {
+//   //   setShowModal((prev) => !prev);
+//   // };
 
-  return (
-    <div>
-      <Container>
-        {/* <Section title="Топ недели"> */}
+//   return (
+//     <div>
+//       <Container>
+//         {/* <Section title="Топ недели"> */}
 
-        <button type="button" onClick={stop}>
-          Delete
-        </button>
+//         {/* <button type="button" onClick={stop}>
+//           Delete
+//         </button> */}
 
-        <button type="button" className="btn-modal" onClick={toggle}>
-          Open
-        </button>
+//         {/* <button type="button" className="btn-modal" onClick={toggle}>
+//           Open
+//         </button> */}
 
-        {showModal && (
-          <Modal onToggle={toggle}>
-            При разработке программ данные приходят, как правило, в виде
-            массивов и объектов, значения которых необходимо записать в
-            локальные переменные. Для того, чтобы делать это максимально просто,
-            в современном стандарте есть синтаксис деструктуризирующего
-            присваивания.{" "}
-          </Modal>
-        )}
-        {/* <Clock /> */}
-        {/* {delClock && <Clock />} */}
-        {/* <FeedbackFormHock /> */}
-        {/* <Dropdown /> */}
-        {/* <Counter initialValue={10} /> */}
-        {/* <ColorPicker options={colorPickerOptions} /> */}
-        {/* <Alert text="Шеф всё пропало!" type="error" /> */}
-        {/* <Alert text="Шеф всё пропало!" type="warning" /> */}
-        {/* <Alert text="Шеф всё пропало!" type="success" /> */}
-        {/* </Section> */}
+//         {showModal && (
+//           <Modal onToggle={toggle}>
+//             При разработке программ данные приходят, как правило, в виде
+//             массивов и объектов, значения которых необходимо записать в
+//             локальные переменные. Для того, чтобы делать это максимально просто,
+//             в современном стандарте есть синтаксис деструктуризирующего
+//             присваивания.
+//           </Modal>
+//         )}
+//         {/* <Clock /> */}
+//         {/* {delClock && <Clock />} */}
+//         {/* <FeedbackFormHock /> */}
+//         {/* <Dropdown /> */}
+//         {/* <Counter initialValue={10} /> */}
+//         {/* <ColorPicker options={colorPickerOptions} /> */}
+//         {/* <Alert text="Шеф всё пропало!" type="error" /> */}
+//         {/* <Alert text="Шеф всё пропало!" type="warning" /> */}
+//         {/* <Alert text="Шеф всё пропало!" type="success" /> */}
+//         {/* </Section> */}
 
-        {/* <PaintingList items={paintings} /> */}
-        {/* <ButtonPaint type="button" disabled={false} label="Click Me" /> */}
-        {/* <Section title="The Best" classes="is-hidden open">
+//         {/* <PaintingList items={paintings} /> */}
+//         {/* <ButtonPaint type="button" disabled={false} label="Click Me" /> */}
+//         {/* <Section title="The Best" classes="is-hidden open">
 
-        </Section> */}
-      </Container>
-    </div>
-  );
-};
-export default App;
+//         </Section> */}
+//       </Container>
+//     </div>
+//   );
+// };
+// export default App;
 
 // class App extends Component {
 //   state = {
@@ -227,3 +229,29 @@ export default App;
 // }
 
 // export default App;
+
+
+
+// ======================= Lesson # 3 Player ==================
+
+import videos from './videos.json'
+
+class App extends Component {
+  state = { 
+    selectedVideo: null,
+  } 
+
+  selectVideo = (link) => {
+    this.setState({selectedVideo: link})
+  }
+
+  render() { 
+    return (<Container>
+      <h1>Selected video: {this.state.selectedVideo}</h1>
+      <VideoList videoItems={videos} onSelectLink={this.selectVideo} />
+      <Player url={this.state.selectedVideo} />
+    </Container>);
+  }
+}
+ 
+export default App;

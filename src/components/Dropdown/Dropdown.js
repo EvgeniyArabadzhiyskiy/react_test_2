@@ -1,13 +1,14 @@
-import React, { Component } from "react";
+import  { Component } from "react";
 import stl from "./Dropdown.module.css";
 
-class Dropdown extends React.Component {
+class Dropdown extends Component {
   static defaultProps = {};
 
   static propTypes = {};
 
   state = {
     visible: false,
+    license: false,
   };
 
   toggle = () => {
@@ -16,15 +17,23 @@ class Dropdown extends React.Component {
     });
   };
 
+  checkboxChenge = (evt) => {
+    this.setState({license: evt.target.checked})
+  }
+
   render() {
     return (
       <div className={stl.Dropdown}>
         <button className={stl.Dropdown__toggle} onClick={this.toggle}>
           {this.state.visible ? "Скрыть" : "Показать"}
         </button>
+        <label> Пользовательское соглашение
+          <input type="checkbox" onChange={this.checkboxChenge} />
+        </label>
+        
 
         {this.state.visible && (
-          <div className={stl.Dropdown__menu} onClick={this.toggle}>
+          <div className={stl.Dropdown__menu} checked={this.state.license} onClick={this.toggle}>
             Выплывающее меню
           </div>
         )}
