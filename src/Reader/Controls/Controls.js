@@ -1,9 +1,9 @@
 
-const Controls = ({onPrev, onNext, maxIndex, minIndex}) => {
+const Controls = ({onChange, maxIndex, minIndex}) => {
     return ( 
         <>
-        <button type="button" onClick={onPrev} disabled={minIndex}>Назад</button>
-        <button type="button" onClick={onNext} disabled={maxIndex}>Вперед</button>
+        <button type="button" onClick={() => onChange(-1)} disabled={minIndex}>Назад</button>
+        <button type="button" onClick={() => onChange(1)} disabled={maxIndex}>Вперед</button>
         </>
      );
 }

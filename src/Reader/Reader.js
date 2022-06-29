@@ -2,35 +2,29 @@ import { Component } from "react";
 import publications from "../publications.json";
 import ContentBox from "./ContentBox/ContentBox";
 import Controls from "./Controls/Controls";
+import Progress from "./Progress/Progress";
 
 class Reader extends Component {
   state = {
     activeIndex: 0,
   };
 
-  getActiveProgress = () => {
-    return this.state.activeIndex + 1;
-  };
+  LS_KEY = "reader-item";
+  componentDidMount() {
+    const savedItem = localStorage.getItem(this.LS_KEY);
 
-  //   increment = () => {
-  //     if (this.state.activeIndex < publications.length - 1) {
-  //       this.setState((prevState) => {
-  //         return {
-  //           activeIndex: prevState.activeIndex + 1,
-  //         };
-  //       });
-  //     }
-  //   };
+    if (savedItem) {
+        this.setState({ activeIndex: Number(savedItem) });
+    }
 
-  //   decrement = () => {
-  //     this.setState((prevState) => {
-  //       if (this.state.activeIndex > 0) {
-  //         return {
-  //           activeIndex: prevState.activeIndex - 1,
-  //         };
-  //       }
-  //     });
-  //   };
+    
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.activeIndex !== prevState.activeIndex) {
+      localStorage.setItem(this.LS_KEY, JSON.stringify(this.state.activeIndex));
+    }
+  }
 
   changeIndex = (value) => {
     this.setState((prevState) => {
@@ -46,21 +40,19 @@ class Reader extends Component {
 
   render() {
     const { activeIndex } = this.state;
-    const activProg = activeIndex + 1;
-    const max = activeIndex >= publications.length - 1;
-    const min = activeIndex <= 0;
+    const activProgres = activeIndex + 1;
+    const totalItems = publications.length;
+    const maxProgress = activProgres >= totalItems;
+    const minProgress = activProgres === 1;
 
     return (
       <div>
         <Controls
-          onPrev={() => this.changeIndex(-1)}
-          onNext={() => this.changeIndex(1)}
-          maxIndex={max}
-          minIndex={min}
+          onChange={this.changeIndex}
+          maxIndex={maxProgress}
+          minIndex={minProgress}
         />
-        <p>
-          {activProg}/{publications.length}
-        </p>
+        <Progress current={activProgres} total={totalItems} />
         <ContentBox articles={this.findActiveArticle()} />
       </div>
     );
