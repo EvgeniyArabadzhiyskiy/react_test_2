@@ -1,29 +1,33 @@
-import { Component } from "react";
+import { PureComponent } from "react";
 import ReactPlayer from "react-player";
 
-class Player extends Component {
+class Player extends PureComponent {
   state = {
-    isVideoLoaded: false
+    isVideoLoaded: false,
   };
 
   componentDidUpdate(prevProps) {
-    if(prevProps.url !== this.props.url) {
-        this.setState({isVideoLoaded: false})
-        // console.log('hello');
+    if (prevProps.url !== this.props.url) {
+      this.setState({ isVideoLoaded: false });
     }
   }
 
-
   render() {
-    const {isVideoLoaded} = this.state
-    const { url } = this.props
-    const showloader = url && !isVideoLoaded 
-    console.log("showloader", showloader);
-    
+    const { isVideoLoaded } = this.state;
+    const { url } = this.props;
+    const showloader = url && !isVideoLoaded;
+    const plaerSize = isVideoLoaded ? "100%" : 0
+
     return (
-      <div>
+      <div style={{width: 710, height: 400}}>
         {showloader && <h2>Загружаем видео ...</h2>}
-        <ReactPlayer url={url} controls onReady={() => this.setState({isVideoLoaded: true})} />
+        <ReactPlayer
+          url={url}
+          width={plaerSize}
+          height={plaerSize}
+          onReady={() => this.setState({ isVideoLoaded: true })}
+          controls
+        />
       </div>
     );
   }
