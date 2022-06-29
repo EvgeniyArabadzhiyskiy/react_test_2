@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 // import Section from "./components/Section/Section";
 import Container from "./components/Container/Container";
-import Player from "./components/Player/Player";
-import VideoList from "./components/Player/VideoList/VideoList";
+import Reader from "./Reader/Reader";
+
 // import Clock from "./Hocks Components/Clock/Clock";
 // import PaintingList from "./components/PaintingList/PaintingList";
 // import paintings from "./components/paintings.json";
@@ -234,22 +234,24 @@ import VideoList from "./components/Player/VideoList/VideoList";
 
 // ======================= Lesson # 3 Player ==================
 
-import videos from './videos.json'
+// import Player from "./components/Player/Player";
+// import VideoList from "./components/Player/VideoList/VideoList";
+// import videos from './videos.json'
 
 class App extends Component {
-  state = { 
-    selectedVideo: null,
-  } 
+  // state = { 
+  //   selectedVideo: null,
+  // } 
 
-  selectVideo = (link) => {
-    this.setState({selectedVideo: link})
-  }
+  // selectVideo = (link) => {
+  //   this.setState({selectedVideo: link})
+  // }
 
   render() { 
     return (<Container>
-      <h1>Selected video: {this.state.selectedVideo}</h1>
-      <VideoList videoItems={videos} onSelectLink={this.selectVideo} />
-      <Player url={this.state.selectedVideo} />
+      {/* <VideoList videoItems={videos} onSelectLink={this.selectVideo} /> */}
+      {/* <Player url={this.state.selectedVideo} /> */}
+      <Reader />
     </Container>);
   }
 }
